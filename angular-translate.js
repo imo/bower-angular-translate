@@ -762,6 +762,9 @@ angular.module('pascalprecht.translate').directive('translate', [
               if (interpolateParams) {
                 scope.$watch(interpolateParams, function (interpolateParamsValue) {
                   angular.extend(scope.interpolateParams, interpolateParamsValue);
+                  if (/#/.test(interpolateParams)) {
+                    scope.digest('translate values', {maybe: true});
+                  }
                 });
               }
             });
