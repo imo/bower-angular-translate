@@ -760,8 +760,8 @@ angular.module('pascalprecht.translate').directive('translate', [
           if (translateValuesExist) {
             iAttr.$observe('translateValues', function (interpolateParams) {
               if (interpolateParams) {
-                scope.$parent.$watch(function () {
-                  angular.extend(scope.interpolateParams, $parse(interpolateParams)(scope.$parent));
+                scope.$parent.$watch(interpolateParams, function (interpolateParamsValue) {
+                  angular.extend(scope.interpolateParams, interpolateParamsValue);
                 });
               }
             });
