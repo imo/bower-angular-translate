@@ -765,7 +765,7 @@ angular.module('pascalprecht.translate').directive('translate', [
                   if (/#/.test(interpolateParams)) {
                     scope.digest('translate values', {maybe: true});
                   }
-                });
+                }, true);
               }
             });
           }
