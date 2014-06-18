@@ -744,7 +744,15 @@ angular.module('pascalprecht.translate').directive('translate', [
       compile: function (tElement, tAttr) {
         var translateValuesExist = tAttr.translateValues ? tAttr.translateValues : undefined;
         var translateInterpolation = tAttr.translateInterpolation ? tAttr.translateInterpolation : undefined;
-        var translateValueExist = tElement[0].outerHTML.match(/translate-value-+/i);
+
+        var translateValueExist = false;
+        var attr_id;
+        for (attr_id = 0; attr_id < tElement[0].attributes.length; ++attr_id) {
+          if (tElement[0].attributes[attr_id].name.match(/translate-value-/i)) {
+            translateValueExist = true;
+            break;
+          }
+        }
         return function linkFn(scope, iElement, iAttr) {
           scope.interpolateParams = {};
           iAttr.$observe('translate', function (translationId) {
